@@ -1,0 +1,7 @@
+export const ADD_USER = "ADD_USER";
+export const ADD_USER_SUCCESSFULL = "ADD_USER_SUCCESSFULL";
+export const ADD_USER_FAIL = "ADD_USER_FAIL";
+export const GET_USERS = "GET_USERS";
+export const GET_USERS_SUCCESSFULL = "GET_USERS_SUCCESSFULL";
+export const GET_USERS_FAIL = "GET_USERS_FAIL";
+export const DELETE_ITEM = "DELETE_ITEM";
