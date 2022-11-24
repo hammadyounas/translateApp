@@ -11,8 +11,10 @@ const RouterCmp = () => {
       <Router>
         <Routes>
          <Route path='/' element={<Login />}></Route>
-         <Route path='/trans' element={<Translate />}></Route>
+         <Route element={<ProtectedRoute />}>
+         <Route path='/translations' element={<Translate />}></Route>
          <Route path='/profile' element={<Profile />}></Route>
+         </Route>
         </Routes>
       </Router>
     </>

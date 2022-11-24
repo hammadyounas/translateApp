@@ -6,6 +6,9 @@ import {
   GET_USERS_SUCCESSFULL,
   GET_USERS_FAIL,
   DELETE_ITEM,
+  GET_USER_DATA,
+  GET_USER_DATA_FAIL,
+  GET_USER_DATA_LOADING,
 } from '../actionsTypes/actionTypes'
 
 const initialState = {
@@ -14,9 +17,14 @@ const initialState = {
     data: {},
     error: {},
   },
+  userData: {
+    data: {},
+    loading: false,
+    error: '',
+  },
   addUser: {
     loading: false,
-    data: {},
+    data: false,
     error: {},
   },
   updateUser: {
@@ -28,6 +36,36 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
+    // ADD USER CASES
+    case ADD_USER:
+      return {
+        ...state,
+        addUser: {
+          loading: true,
+          data: false,
+          error: false,
+        },
+      }
+    case ADD_USER_SUCCESSFULL:
+      return {
+        ...state,
+        addUser: {
+          loading: false,
+          data: action.payload,
+          error: false,
+        },
+      }
+    case ADD_USER_FAIL:
+      return {
+        ...state,
+        addUser: {
+          loading: false,
+          data: false,
+          error: true,
+        },
+      }
+
+    // GET ALL USER CASES
     case GET_USERS:
       return {
         ...state,
@@ -41,8 +79,8 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         users: {
-          loading: true,
-          data: action.data,
+          loading: false,
+          data: action.payload,
           error: {},
         },
       }
@@ -50,11 +88,40 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         users: {
-          loading: true,
+          loading: false,
           data: {},
-          error: action.data,
+          error: true,
         },
       }
+    // GET USER DATA CASES
+    case GET_USER_DATA_LOADING:
+      return {
+        ...state,
+        userData: {
+          data: {},
+          loading: true,
+          error: false,
+        },
+      }
+    case GET_USER_DATA:
+      return {
+        ...state,
+        userData: {
+          data: action.payload[0],
+          loading: false,
+          error: false,
+        },
+      }
+    case GET_USER_DATA_FAIL:
+      return {
+        ...state,
+        userData: {
+          data: {},
+          loading: false,
+          error: true,
+        },
+      }
+    // DELETE USER ITEM
     case DELETE_ITEM:
       return {
         ...state,
@@ -65,4 +132,4 @@ const userReducer = (state = initialState, action) => {
   }
 }
 
-export default userReducer;
+export default userReducer

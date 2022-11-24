@@ -1,76 +1,73 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-// import './translate.scss'
-import "./translate.css"
-// import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import './translate.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { GetUserData } from '../../actionsTypes/userAction'
+import { useNavigate } from 'react-router-dom'
+import Person from '@mui/icons-material/Person'
 
 const Translate = () => {
-  const apiUrl = 'http://localhost:8080/translations'
-  const [InputValue, setInputValue] = useState('')
-  const apiKey = "25bdbc7e-a2ac-464b-83f5-d9eed36a6303"
+  const dispatch = useDispatch()
+  const { data } = useSelector((stata) => stata.userReducer.userData)
+  const [translation, setTranslation] = useState('')
 
-  const createHeaders = () => {
-    return {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-    }
-  }
-  const createUser = async (username) => {
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: createHeaders(),
-        body: JSON.stringify({
-          username,
-          translate: [],
-        }),
-      })
-      console.log(response, 'create')
-    } catch (error) {
-      console.log(error)
-    }
+  const UserName = localStorage.getItem('user')
+  const Navigater = useNavigate()
+
+  useEffect(() => {
+    dispatch(GetUserData(UserName))
+  }, [])
+
+  const getTranslation = () => {
+    console.log('data', data)
+    data.translate.push(translation)
+    setTranslation('')
+    console.log('data', data);
   }
 
-  useEffect( () => {
-    axios.get(apiUrl)
-    .then(function (response) {
-      // handle success
-      console.log(response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-  },[])
   return (
     <>
       <div>
-        <div className="navBar">
-          <div className="txtIConDiv">
+        <div className='navBar'>
+          <div className='txtIConDiv'>
             <h1>Lost in Translate</h1>
-            <div className="navIcon"></div>
-          </div>
-        </div>
-        <div className="secMain">
-          <div className="left"></div>
-          <div className="right">
-            <div className="translateBox">
-              <div className="transHedMain">
-
-               <div className="heading"> <h1>Translate page</h1></div>
-                
-                   <textarea className="text" name="" id="" cols="30" rows="10"></textarea>
-               
-
-
-              </div>
-                <button className="transBtn">Translate</button>
-
+            <div className='navIcon'>
+              <Person onClick={() => Navigater('/profile')} />
             </div>
           </div>
         </div>
-        <div className="footerMain"></div>
+        <div className='secMain'>
+          <div className='right'>
+            <div className='translateBox'>
+              <div className='transHedMain'>
+                <div className='heading'>
+                  <h1>Translate page</h1>
+                </div>
 
+                <div className='texInput'>
+                  <input
+                    value={translation}
+                    onChange={(e) => setTranslation(e.target.value)}
+                    className='nameInput12'
+                    type='text'
+                    placeholder='Enter your name'
+                  />
+                </div>
+
+                <textarea
+                  className='text'
+                  name=''
+                  id=''
+                  cols='30'
+                  rows='10'
+                ></textarea>
+              </div>
+              <button onClick={getTranslation} className='transBtn'>
+                Translate
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className='footerMain'></div>
       </div>
     </>
   )
