@@ -1,7 +1,10 @@
 import Person from '@mui/icons-material/Person'
+import { useNavigate } from 'react-router-dom'
 import Side from '../../assets/Side.png'
 
 const ProfileHeader =({ username })=>{
+  const Navigator = useNavigate()
+
     return (
         <header>
                 <div className="nabBar"> 
