@@ -29,6 +29,8 @@
   display: flex;
   justify-content: center;
   align-items: end;
+  -webkit-transtition: left .3s ease-in-out, right .3s ease-in-out;
+  transition: left .3s ease-in-out, right .3s ease-in-out;
 }
 
 .right{

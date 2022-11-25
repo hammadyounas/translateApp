@@ -88,7 +88,7 @@ const Login = () => {
                 type='text'
                 value={userInputValue}
                 onChange={(e) => setuserInputValue(e.target.value)}
-                placeholder='Enter your name'
+                placeholder='Emeterio your name'
               />
               <button className='icon'>
                 <ArrowCircleRightIcon className='arrowIcon' />
