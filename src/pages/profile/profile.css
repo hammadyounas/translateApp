@@ -17,6 +17,7 @@
   letter-spacing: 5px;
 }
 .iconHedMain {
+    align-items: center;
   display: flex;
   justify-content: space-between;
   width: 60%;
@@ -58,13 +59,16 @@ border: none;
 }
 .iconImage {
   /* padding: 40px; */
-  width: 50vw;
+  width: 70vw;
   display: flex;
   padding: 20px;
   align-items: end;
+  position: relative;
 }
 .image2 {
-  height: 70%;
+  height: 94%;
+  position: absolute;
+  top: 22%;
 }
 .transBox {
   background-color: white;

@@ -17,6 +17,11 @@ const initialState = {
     data: {},
     error: {},
   },
+  UserDataUpdate: {
+    loading: false,
+    data: {},
+    error: {},
+  },
   userData: {
     data: {},
     loading: false,
@@ -126,6 +131,34 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         numOfItems: state.numOfItems - 1,
+      }
+    // UPDATE USER
+    case GET_USER_DATA_LOADING:
+      return {
+        ...state,
+        UserDataUpdate: {
+          loading: true,
+          data: {},
+          error: {},
+        },
+      }
+    case GET_USER_DATA:
+      return {
+        ...state,
+        UserDataUpdate: {
+          loading: false,
+          data: action.payload,
+          error: {},
+        },
+      }
+    case GET_USER_DATA_FAIL:
+      return {
+        ...state,
+        UserDataUpdate: {
+          loading: false,
+          data: {},
+          error: true,
+        },
       }
     default:
       return state
