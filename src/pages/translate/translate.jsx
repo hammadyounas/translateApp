@@ -43,6 +43,7 @@ const Translate = () => {
           <div className='txtIConDiv'>
             <h1>Lost in Translate</h1>
             <div className='navIcon'>
+            <div><p>hello</p></div>
             <img  src={Side} width="130" height={60} onClick={() => Navigater('/profile')}/>
             </div>
           </div>
