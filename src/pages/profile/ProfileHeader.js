@@ -1,4 +1,5 @@
 import Person from '@mui/icons-material/Person'
+import Side from '../../assets/Side.png'
 
 const ProfileHeader =({ username })=>{
     return (
@@ -7,7 +8,7 @@ const ProfileHeader =({ username })=>{
                     <div className="iconHedMain">
                         <div className="hed"><h1>Lost in Translate</h1></div>
                         <div className="iconDiv">
-                        <Person onClick={() => Navigater('/profile')} />
+                        <img  src={Side} width="130" height={60} onClick={() => Navigater('/profile')}/>
                         </div>
                     </div>
                 </div>

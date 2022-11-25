@@ -4,27 +4,36 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GetUserData, UpdateUser } from '../../actionsTypes/userAction'
 import { useNavigate } from 'react-router-dom'
 import Person from '@mui/icons-material/Person'
-import Sign from "../../assets/SIGN.png"
+import Sign from '../../assets/SIGN.png'
+import Side from '../../assets/Side.png'
+
 
 const Translate = () => {
   const dispatch = useDispatch()
   const { data } = useSelector((stata) => stata.userReducer.userData)
   const [translation, setTranslation] = useState('')
-  
+  const [showSign, setshowSign] = useState(false)
   const UserName = localStorage.getItem('user')
   const Navigater = useNavigate()
   useEffect(() => {
     dispatch(GetUserData(UserName))
   }, [])
   console.log(data)
+  
+  useEffect(() => {
+   if(translation.length == 0){
+    setshowSign(false)
+   }
+  } ,[translation])
 
   const getTranslation = () => {
-    if(!getTranslation){
+    if (translation) {
+      data.translate.push(translation)
+      setshowSign(true)
+    } else {
+      setshowSign(false)
       return
     }
-    data.translate.push(translation)
-    setTranslation('')
-    
   }
 
   return (
@@ -34,18 +43,21 @@ const Translate = () => {
           <div className='txtIConDiv'>
             <h1>Lost in Translate</h1>
             <div className='navIcon'>
-              <Person onClick={() => Navigater('/profile')} />
+            <img  src={Side} width="130" height={60} onClick={() => Navigater('/profile')}/>
             </div>
           </div>
         </div>
         <div className='secMain'>
           <div className='right'>
-            <div className='translateBox'>
+            <form onSubmit={e => {
+              getTranslation(),
+              e.preventDefault()
+            }} className='translateBox'>
               <div className='transHedMain'>
                 <div className='heading'>
                   <h1>Translate page</h1>
                 </div>
-
+                  
                 <div className='texInput'>
                   <input
                     value={translation}
@@ -56,21 +68,14 @@ const Translate = () => {
                   />
                 </div>
 
-                <div
-                  className='text'
-                  name=''
-                > 
-                {
-
-                  translation &&
-                  <img src={Sign} width="100%" height="100%"  />
-                }
+                <div className='text' name=''>
+                  {showSign && <img src={Sign} width='100%' height='100%' />}
                 </div>
               </div>
-              <button onClick={getTranslation} className='transBtn'>
+              <button  className='transBtn'>
                 Translate
               </button>
-            </div>
+            </form>
           </div>
         </div>
         <div className='footerMain'></div>

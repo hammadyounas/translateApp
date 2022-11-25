@@ -1,22 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProfileHeader from './ProfileHeader'
 import ProfileTranslate from './ProfileTranslateHistory'
 import './profile.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { GetUsers, Logout } from '../../actionsTypes/userAction'
-import img2 from '../../assets/img2.png'
+import img2 from '../../assets/Profile.png'
+
+
 
 const profile = () => {
   const Navigater = useNavigate()
   const dispatch = useDispatch()
-  const selec = useSelector((stata) => console.log(stata))
   const { data } = useSelector((stata) => stata.userReducer.userData)
-  console.log(data);
-   
+  const [userAllTranslation, setuserAllTranslation] = useState(data.translate)
   useEffect(() => {
     dispatch(GetUsers())
   }, [])
+  const ClearAll = () => {
+    setuserAllTranslation([])
+  }
+  const oneClear = (ind) => {
+    userAllTranslation.splice(ind,1)
+    setuserAllTranslation([...userAllTranslation])
+  }
   return (
     <>
       <ProfileHeader username={'hello'} />
@@ -30,10 +37,21 @@ const profile = () => {
                 id=''
                 cols='30'
                 rows='10'
-              ></div>
+              >
+               {
+              userAllTranslation.map((val,ind) => {
+                  return(
+                    <div key={ind} className="list">
+                     <p>{val}</p>
+                     <button onClick={() => oneClear(ind)}>delete</button>
+                    </div>
+                    )
+                })
+               }
+              </div>
               <div className='btnMain'>
                 <div className='clearBtn'>
-                  <button className='btnClear'>Clear</button>
+                  <button className='btnClear' onClick={ClearAll}>Clear</button>
                 </div>
                 <div className='logoutBtn'>
                   <button

@@ -244,7 +244,7 @@ color: gray;
   }
   
   .iconImage {
-      justify-content: end !important;
+      /* justify-content: end !important; */
       align-items: flex-start !important;
       height: 50%;
   }

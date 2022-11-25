@@ -247,12 +247,12 @@
     }
     
     .iconImage {
-        justify-content: end !important;
+        /* justify-content: end !important; */
         align-items: flex-start !important;
         height: 50%;
     }
     .transBox{
-        width: 51vw !important;
+        width: 100% !important;
         /* height: 45vh !important; */
         height: 50vh !important;
         /* padding: 2rem !important; */
@@ -297,6 +297,12 @@
     .image2{
         height: 30vh !important;
         margin-top: 2rem;
+    }
+    .right{
+        justify-content: center;
+    }
+    .translateBox {
+        width: 100%;
     }
    
 
@@ -347,8 +353,14 @@
         margin-left: 1rem;
         margin-top: 1rem;
     }
-    .btnMain{
-        width: 84% !important;
+    .clearBtn{
+        margin: 0 10px;
+    }
+    .logoutBtn{
+        margin: 0 10px;
+    }
+    .transBox{
+        margin-bottom: -6rem;
     }
   }
 
@@ -370,6 +382,9 @@
     }
     .heading {
         letter-spacing: 1px;
+    }
+    .transBox{    
+        height: 34vh !important;
     }
   }
   @media only screen and (max-width: 320px) {
@@ -410,15 +425,17 @@
         align-items: flex-start !important;
         padding: 10px;
     }
-    .transBox{
-        height: 100% !important;
-    }
+  
     .btnMain {
-        width: 70% !important;
+        width: 30% !important;
         margin-top: 1rem;
     }
-    .image2 {
-        /* height: 70% !important; */
+    .iconImage{
+        margin-bottom: -1rem;
+    }
+    .transBox{
+        margin-bottom: -8rem;
+        height: 50vh !important;
     }
   }
   @media only screen and (max-width: 912px) {
@@ -426,7 +443,7 @@
         width: 35%;
     }
     .translateBox{
-        width: 65%;
+        width: 100%;
     }
     .text{
         width: 90% !important;
@@ -441,6 +458,17 @@
     }
     .inputMain{
         height: 10%;
+    }
+    .innerDiv{
+        flex-direction: column-reverse;
+    }
+    .transBox{
+        height: 42vh !important;
+        width: 99% !important;
+    }
+    .iconImage{
+        justify-content: center !important;
+        width: 100% !important;
     }
   }
   @media only screen and (max-width: 540px) {
@@ -488,6 +516,9 @@
     .arrowIcon {
         font-size: 47px!important;
     }
+    .btnMain{
+        margin-left: 0 !important; 
+    }
 }
 
 @media only screen and (max-width: 412px) {
@@ -495,7 +526,11 @@
         width: 56%;
     }
     .translateBox{
-        width: 85%;
+        /* width: 85%;   */
+        width: 100%;
+    }
+    .transBox{
+        margin-bottom: -4rem;
     }
   }
 @media only screen and (max-width: 1024px) {
