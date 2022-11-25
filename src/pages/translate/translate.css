@@ -89,7 +89,7 @@
     letter-spacing: 5px;
 }
 .txtIConDiv{
-
+    align-items: center;
     width: 55%;
     display: flex;
     justify-content: space-between;
@@ -200,7 +200,8 @@
   }
   @media only screen and (max-width: 768px) {
     .image2{
-        height: 50% !important;
+        height: 50vh !important;
+        margin-top: -8rem !important;
     }
     .inputMain {
         padding:30px ;
@@ -211,6 +212,9 @@
     }
     .imageDiv {
         height: 76% !important;
+    }
+    .iconImage{
+        height: 50vh !important;
     }
 
 
@@ -295,8 +299,8 @@
         width: 100% !important;
     }
     .image2{
-        height: 30vh !important;
-        margin-top: 2rem;
+        height: 38vh !important;
+        /* margin-top: 2rem; */
     }
     .right{
         justify-content: center;
@@ -362,6 +366,12 @@
     .transBox{
         margin-bottom: -6rem;
     }
+    .iconHedMain {
+        width: 100% !important;
+    }
+    .image2{
+        margin-top: 0;
+    }
   }
 
 
@@ -391,10 +401,16 @@
     .transBtn {
         width: 46%;
     }
+    .iconHedMain {
+        width: 100% !important;
+    }
   }
   @media only screen and (max-width: 414px) {
     .transBtn {
         width: 40%;
+    }
+    .image2{
+        margin-top: 1rem;
     }
   }
   @media only screen and (max-width: 820px) {
@@ -432,6 +448,10 @@
     }
     .iconImage{
         margin-bottom: -1rem;
+        height: 50vh !important;
+    }
+    .image2{
+        margin-top: -4rem;
     }
     .transBox{
         margin-bottom: -8rem;
@@ -469,6 +489,10 @@
     .iconImage{
         justify-content: center !important;
         width: 100% !important;
+        height: 50vh;
+    }
+    .image2{
+        margin-top: -5rem;
     }
   }
   @media only screen and (max-width: 540px) {
@@ -548,8 +572,29 @@
        margin-top: 1rem;
     }
   }
-@media only screen and (max-width: 1280px) {
+/* @media only screen and (max-width: 1280px) {
     .transBtn {
         width: 30%;
     }
-  }
+  } */
+  @media only screen and (max-width: 1024px) {
+    .innerDiv {
+        flex-direction: column-reverse !important;
+    }
+    .iconImage{
+        width: 100% !important;
+        height: 50vh !important;
+        justify-content: center;
+
+    }
+    .image2{
+        height: 36vh;
+        margin-top: -5rem;
+    }
+
+    
+    .transBox {
+        height: 47vh !important;
+        width: 84%;
+    }
+}

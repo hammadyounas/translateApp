@@ -99,17 +99,17 @@ const GetUsers = () => {
 
 
 
-const UpdateUser = (arrayVal) => {
+const UpdateUser = (object) => {
   const Username = localStorage.getItem("user")
   return async (dispatch) => {
     dispatch({
       type: UPDATE_USER,
     })
-    await fetch(`${apiUrl}/translations?username=${Username}`, {
-      method: 'PUT',
+    await fetch(`${apiUrl}/translations/${object.id}`, {
+      method: 'PATCH',
       headers: createHeaders(),
       body: JSON.stringify({
-        translate: arrayVal,
+        translate: object.translate,
       }),
     })
       .then((res) => {

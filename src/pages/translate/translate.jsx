@@ -30,6 +30,7 @@ const Translate = () => {
     if (translation) {
       data.translate.push(translation)
       setshowSign(true)
+      dispatch(UpdateUser(data))
     } else {
       setshowSign(false)
       return
@@ -44,6 +45,7 @@ const Translate = () => {
             <h1>Lost in Translate</h1>
             <div className='navIcon'>
             <img  src={Side} width="130" height={60} onClick={() => Navigater('/profile')}/>
+            <p>{localStorage.getItem("user")}</p>
             </div>
           </div>
         </div>
