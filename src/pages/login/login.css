@@ -34,9 +34,7 @@
 }
 
 .right{
-  /* width: 50vw; */
   padding: 20px;
-  /* height: 70vh; */
   display: flex;
   align-items: end;
   width: 100%;
