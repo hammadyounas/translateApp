@@ -6,7 +6,7 @@ import { addUser, GetUsers } from '../../actionsTypes/userAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import helloIcon from '../../assets/helloIcon.png'
+import loginRobot from '../../assets/loginRobot.png'
 
 const Login = () => {
   const [userInputValue, setuserInputValue] = useState('')
@@ -42,7 +42,8 @@ const Login = () => {
       return val.username == userInputValue
     })
     if (res.length > 0) {
-      toast.error(`${userInputValue} already exists try again!`)
+      localStorage.setItem('user', userInputValue)
+      Navigater('/translations')
       setuserInputValue('')
       return
     } else {
@@ -71,11 +72,17 @@ const Login = () => {
         <div className='secMain'>
           <div className='left'>
             <div className='imageDiv'>
-              <img className='img1' src={helloIcon} alt='' />
+              <img className='img1' src={loginRobot} alt='' />
             </div>
           </div>
           <div className='right'>
-            <div className='inputMain'>
+            <form
+              onSubmit={(e) => {
+                CreateNewUser()
+                e.preventDefault()
+              }}
+              className='inputMain'
+            >
               <input
                 className='nameInput'
                 type='text'
@@ -83,13 +90,10 @@ const Login = () => {
                 onChange={(e) => setuserInputValue(e.target.value)}
                 placeholder='Enter your name'
               />
-              <div className='icon'>
-                <ArrowCircleRightIcon
-                  onClick={CreateNewUser}
-                  className='arrowIcon'
-                />
-              </div>
-            </div>
+              <button className='icon'>
+                <ArrowCircleRightIcon className='arrowIcon' />
+              </button>
+            </form>
           </div>
         </div>
         <div className='footerMain'></div>

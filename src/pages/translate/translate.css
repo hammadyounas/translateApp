@@ -67,6 +67,7 @@
 .arrowIcon{
     font-size: 80px !important;
     color: #ffc700;
+    cursor: pointer;
 }
 .footerMain{
     background-color: #2892d7;

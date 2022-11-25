@@ -11,7 +11,9 @@ const profile = () => {
   const Navigater = useNavigate()
   const dispatch = useDispatch()
   const selec = useSelector((stata) => console.log(stata))
-
+  const { data } = useSelector((stata) => stata.userReducer.userData)
+  console.log(data);
+   
   useEffect(() => {
     dispatch(GetUsers())
   }, [])
@@ -22,14 +24,13 @@ const profile = () => {
         <div className='innerDiv'>
           <div className='transTex'>
             <div className='transBox'>
-              <textarea
-                className='txtArea'
+              <div
+                className='list_Parent'
                 name=''
                 id=''
                 cols='30'
                 rows='10'
-              ></textarea>
-              {/* <div className="txtArea"></div> */}
+              ></div>
               <div className='btnMain'>
                 <div className='clearBtn'>
                   <button className='btnClear'>Clear</button>

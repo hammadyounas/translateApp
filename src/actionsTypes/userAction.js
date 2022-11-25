@@ -16,6 +16,7 @@ import {
 import axios from 'axios'
 const apiKey = process.env.REACT_APP_API_KEY
 const apiUrl = process.env.REACT_APP_BASE_URL
+console.log(apiUrl);
 const createHeaders = () => {
   return {
     'Content-Type': 'application/json',
@@ -98,17 +99,17 @@ const GetUsers = () => {
 
 
 
-const UpdateUser = () => {
+const UpdateUser = (arrayVal) => {
+  const Username = localStorage.getItem("user")
   return async (dispatch) => {
     dispatch({
       type: UPDATE_USER,
     })
-    await fetch(`${apiUrl}/translations`, {
-      method: 'POST',
+    await fetch(`${apiUrl}/translations?username=${Username}`, {
+      method: 'PUT',
       headers: createHeaders(),
       body: JSON.stringify({
-        username: userInputValue,
-        translate: [],
+        translate: arrayVal,
       }),
     })
       .then((res) => {
@@ -116,7 +117,6 @@ const UpdateUser = () => {
           type: UPDATE_USER_SUCCESSFULL,
           payload: true,
         })
-        localStorage.setItem('user', userInputValue)
       })
       .catch((err) => {
         dispatch({
@@ -125,4 +125,4 @@ const UpdateUser = () => {
       })
 }}
 
-export { addUser, GetUsers, GetUserData, Logout }
+export { addUser, GetUsers, GetUserData, Logout ,UpdateUser}

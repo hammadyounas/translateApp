@@ -167,13 +167,11 @@ height: 100%;
 color: gray;
 }
 
-
-
-
-
-
-
-
+.icon{
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
 
 /* ///////////////////////// */
 
@@ -214,6 +212,7 @@ color: gray;
 
   .arrowIcon {
       font-size: 63px !important;
+      cursor: pointer;
 
   }
   .secMain{

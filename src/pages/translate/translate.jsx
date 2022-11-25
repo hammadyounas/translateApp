@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './translate.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { GetUserData } from '../../actionsTypes/userAction'
+import { GetUserData, UpdateUser } from '../../actionsTypes/userAction'
 import { useNavigate } from 'react-router-dom'
 import Person from '@mui/icons-material/Person'
 
@@ -9,19 +9,18 @@ const Translate = () => {
   const dispatch = useDispatch()
   const { data } = useSelector((stata) => stata.userReducer.userData)
   const [translation, setTranslation] = useState('')
-
   const UserName = localStorage.getItem('user')
   const Navigater = useNavigate()
-
   useEffect(() => {
     dispatch(GetUserData(UserName))
   }, [])
+  console.log(data)
 
   const getTranslation = () => {
     console.log('data', data)
     data.translate.push(translation)
     setTranslation('')
-    console.log('data', data);
+    dispatch(UpdateUser(data.translate))
   }
 
   return (

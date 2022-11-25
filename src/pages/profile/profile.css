@@ -100,8 +100,16 @@
 
 
 
-
-
+.list_Parent{
+    width: 100%;
+    border: 1px solid;
+    height: 75vh;
+ overflow-y: scroll;
+    margin: 20px 0;
+}
+.list_Parent::-webkit-scrollbar{
+    display: none;
+}
 
 /* /////////////////// */
 
