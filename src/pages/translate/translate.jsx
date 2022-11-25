@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GetUserData, UpdateUser } from '../../actionsTypes/userAction'
 import { useNavigate } from 'react-router-dom'
 import Person from '@mui/icons-material/Person'
+import Sign from "../../assets/SIGN.png"
 
 const Translate = () => {
   const dispatch = useDispatch()
   const { data } = useSelector((stata) => stata.userReducer.userData)
   const [translation, setTranslation] = useState('')
+  
   const UserName = localStorage.getItem('user')
   const Navigater = useNavigate()
   useEffect(() => {
@@ -17,10 +19,12 @@ const Translate = () => {
   console.log(data)
 
   const getTranslation = () => {
-    console.log('data', data)
+    if(!getTranslation){
+      return
+    }
     data.translate.push(translation)
     setTranslation('')
-    dispatch(UpdateUser(data.translate))
+    
   }
 
   return (
@@ -52,13 +56,16 @@ const Translate = () => {
                   />
                 </div>
 
-                <textarea
+                <div
                   className='text'
                   name=''
-                  id=''
-                  cols='30'
-                  rows='10'
-                ></textarea>
+                > 
+                {
+
+                  translation &&
+                  <img src={Sign} width="100%" height="100%"  />
+                }
+                </div>
               </div>
               <button onClick={getTranslation} className='transBtn'>
                 Translate
