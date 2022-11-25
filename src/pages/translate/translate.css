@@ -29,6 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: end;
+    animation: 2s ease-in-out infinite alternate swingParent;
 }
 
 .right{
@@ -142,8 +143,18 @@
     color: #ffffff;
     cursor: pointer;
     font-size: larger;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
+@keyframes swingParent {
+    from {
+      transform: translateX(0);
+      left: 0;
+    }
+    to {
+      left: 100%;
+      transform: translateX(-100%);
+    }
+  }
+
 .imageDiv{
  height: 100%;
 }
