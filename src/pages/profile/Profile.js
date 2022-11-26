@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import ProfileHeader from './ProfileHeader'
 import ProfileTranslate from './ProfileTranslateHistory'
-import './profile.css'
+import './Profile.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {
   GetUserData,
-  GetUsers,
   Logout,
   UpdateUser,
 } from '../../actionsTypes/userAction'
 import img2 from '../../assets/Profile.png'
 
-const profile = () => {
+const Profile = () => {
   const Navigater = useNavigate()
   const dispatch = useDispatch()
   const { data } = useSelector((stata) => stata.userReducer.userData)
+  const userName = localStorage.getItem('user')
   const ClearAll = () => {
     data.translate = []
     dispatch(UpdateUser(data))
-    dispatch(GetUserData(localStorage.getItem('user')))
+    dispatch(GetUserData(userName))
   }
   const oneClear = (ind) => {
     data.translate.splice(ind, 1)
     dispatch(UpdateUser(data))
-    dispatch(GetUserData(localStorage.getItem('user')))
+    dispatch(GetUserData(userName))
   }
   useEffect(() => {
-    dispatch(GetUserData(localStorage.getItem('user')))
-  }, [])
+    dispatch(GetUserData(userName))
+  }, [userName])
 
   return (
     <>
@@ -82,4 +82,4 @@ const profile = () => {
   )
 }
 
-export default profile
+export default Profile

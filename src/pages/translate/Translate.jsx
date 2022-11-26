@@ -2,15 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './translate.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { GetUserData, Logout, UpdateUser } from '../../actionsTypes/userAction'
-import { Link, useNavigate } from 'react-router-dom'
-import Person from '@mui/icons-material/Person'
-import Sign from '../../assets/individial_signs/a.png'
-import Side from '../../assets/Side.png'
-// import a from '../../assets/individial_signs/a.png'
-// import b from '../../assets/b.png'
-// import c from '../../assets/c.png'
+import { useNavigate } from 'react-router-dom'
 import getList from './list'
-import { AiOutlineArrowRight } from 'react-icons/ai'
 
 const alphabetList = [
   'a',
@@ -45,47 +38,56 @@ const Translate = () => {
   const dispatch = useDispatch()
   const { data } = useSelector((stata) => stata.userReducer.userData)
   const [translation, setTranslation] = useState('')
-  const [showSign, setshowSign] = useState(false)
   const [signsList, setSignList] = useState([])
   const UserName = localStorage.getItem('user')
   const [InputValue, setInputValue] = useState('')
+  const [shake, setShake] = useState(false)
   useEffect(() => {
     dispatch(GetUserData(UserName))
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [UserName])
   const Navigator = useNavigate()
   useEffect(() => {
-    if (translation.length == 0) {
-      // setshowSign(false)
+    if (translation.length === 0) {
       setSignList([])
     }
   }, [translation])
 
+
   const getTranslation = () => {
     if (translation) {
       data.translate.push(translation)
-      setshowSign(true)
       dispatch(UpdateUser(data))
     } else {
-      setshowSign(false)
       return
     }
   }
 
-  const filterTranslations = () => {
-    console.log('its Work')
+  const filterTranslations = (e) => { 
+    e.preventDefault()
     let listArray = []
     setSignList([])
     const updatedString = InputValue
     updatedString.split('').map((alphabet) => {
       const index = alphabetList.findIndex(
-        (alpha) => alpha.toLocaleLowerCase() == alphabet.toLocaleLowerCase()
+        (alpha) => alpha.toLocaleLowerCase() === alphabet.toLocaleLowerCase()
       )
-      listArray.push(getList()[index])
+      return listArray.push(getList()[index])
     })
     setSignList(listArray)
     setTranslation(InputValue)
+    getTranslation()
   }
-
+    
+  const animate = () => {
+        
+    // Button begins to shake
+    setShake(true);
+    
+    // Buttons stops to shake after 2 seconds
+    setTimeout(() => setShake(false), 2000);
+    
+}
   return (
     <>
       <div>
@@ -95,9 +97,12 @@ const Translate = () => {
             <div className='navIcon'>
               <p>{localStorage.getItem('user')}</p>
               <img
-                src={"https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png"}
-                width={"auto"}
-                className="minilogo"
+                src={
+                  'https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png'
+                }
+                width={'auto'}
+                className='minilogo'
+                alt='logo'
                 height={60}
                 onClick={() => Navigator('/profile')}
               />
@@ -118,7 +123,7 @@ const Translate = () => {
           <div className='right'>
             <form
               onSubmit={(e) => {
-                e.preventDefault()
+                filterTranslations(e)
               }}
               className='translateBox slide-right'
             >
@@ -137,13 +142,6 @@ const Translate = () => {
                     }}
                     placeholder='Enter your name'
                   />
-                  <AiOutlineArrowRight
-                    onClick={() => {
-                      getTranslation(), filterTranslations()
-                    }}
-                    className='inputIcon'
-                    color='white'
-                  />
                 </div>
 
                 <div className='text' name=''>
@@ -151,16 +149,21 @@ const Translate = () => {
                     signsList.map((path, ind) => {
                       return (
                         <React.Fragment key={ind}>
-                          {path == undefined ? null : (
-                            <img src={path} width={50} height={50} />
+                          {path === undefined ? null : (
+                            <img
+                              alt='sign'
+                              src={path}
+                              width={50}
+                              height={50}
+                            />
                           )}
                         </React.Fragment>
                       )
                     })}
                 </div>
               </div>
-              <button className='transBtn'>Translate</button>
-            </form>
+              <button className={shake ? "transBtn animationClass" :"transBtn"} onClick={animate}>Translate</button>
+            </form> 
           </div>
         </div>
         <div className='footerMain'></div>

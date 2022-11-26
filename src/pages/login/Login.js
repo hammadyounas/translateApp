@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, Navigate } from 'react-router-dom'
-import './login.css'
+import { useNavigate } from 'react-router-dom'
+import './Login.css'
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight'
 import { addUser, GetUsers } from '../../actionsTypes/userAction'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,6 +21,7 @@ const Login = () => {
     if (AddUserData.data) {
       Navigater('/translations')
     }
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [AddUserData])
   // Get all user
   useEffect(() => {
@@ -31,7 +32,8 @@ const Login = () => {
     if (UserName) {
       Navigater('/translations')
     }
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [UserName])
   //Create_New_ User_Function
   const CreateNewUser = async () => {
     if (!userInputValue) {
@@ -39,7 +41,7 @@ const Login = () => {
       return
     }
     const res = data.filter((val) => {
-      return val.username == userInputValue
+      return val.username === userInputValue
     })
     if (res.length > 0) {
       localStorage.setItem('user', userInputValue)

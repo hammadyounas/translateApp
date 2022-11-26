@@ -1,7 +1,5 @@
 import {
   ADD_USER,
-  GET_USERS,
-  DELETE_ITEM,
   GET_USER_DATA_LOADING,
   GET_USER_DATA_FAIL,
   GET_USER_DATA,
@@ -99,7 +97,6 @@ const GetUsers = () => {
 
 
 const UpdateUser = (object) => {
-  const Username = localStorage.getItem("user")
   return async (dispatch) => {
     dispatch({
       type: UPDATE_USER,
