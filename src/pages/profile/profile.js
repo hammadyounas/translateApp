@@ -40,12 +40,16 @@ const profile = () => {
               <div className='list_Parent' name='' id='' cols='30' rows='10'>
                 {data.translate?.map((val, ind) => {
                   return (
-                    <div key={ind} className='list'>
-                      <p>{val}</p>
-                      <button onClick={() => oneClear(ind)}>delete</button>
+                    <div>
+                      {ind < 10 ? (
+                        <div key={ind} className='list'>
+                          <p>{val}</p>
+                          <button onClick={() => oneClear(ind)}>delete</button>
+                        </div>
+                      ) : null}
                     </div>
                   )
-                })}
+                })}     
               </div>
               <div className='btnMain'>
                 <div className='clearBtn'>
