@@ -16,7 +16,6 @@ const profile = () => {
   const Navigater = useNavigate()
   const dispatch = useDispatch()
   const { data } = useSelector((stata) => stata.userReducer.userData)
-  console.log(data)
   const ClearAll = () => {
     data.translate = []
     dispatch(UpdateUser(data))

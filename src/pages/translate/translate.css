@@ -99,7 +99,6 @@
 .navIcon{
     padding: 20px;
     cursor: pointer;
-    display: flex;
     /* border: 1px solid black; */
 }
 .translateBox{
@@ -131,7 +130,11 @@
     border: none;
     color: black;
     outline: none;
+    overflow-y: scroll;
     background-color: lightgray;
+}
+.text::-webkit-scrollbar{
+    display: none;
 }
 .transBtn{
     width: 20%;

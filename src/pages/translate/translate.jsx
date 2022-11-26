@@ -10,25 +10,51 @@ import Side from '../../assets/Side.png'
 // import b from '../../assets/b.png'
 // import c from '../../assets/c.png'
 import getList from './list'
-const alphabetList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+const alphabetList = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'o',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'u',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z',
+]
 
 const Translate = () => {
   const dispatch = useDispatch()
   const { data } = useSelector((stata) => stata.userReducer.userData)
   const [translation, setTranslation] = useState('')
   const [showSign, setshowSign] = useState(false)
-  const [signsList, setSignList ] = useState([])
+  const [signsList, setSignList] = useState([])
   const UserName = localStorage.getItem('user')
   useEffect(() => {
     dispatch(GetUserData(UserName))
   }, [])
-  console.log(data)
   const Navigator = useNavigate()
   useEffect(() => {
-   if(translation.length == 0){
-    setshowSign(false)
-   }
-  } ,[translation])
+    if (translation.length == 0) {
+      setshowSign(false)
+    }
+  }, [translation])
 
   const getTranslation = () => {
     if (translation) {
@@ -42,14 +68,16 @@ const Translate = () => {
   }
 
   const filterTranslations = (e) => {
-    let listArray = [];
-    setSignList([]);
-    const updatedString = e.target.value;
-    updatedString.split('').map(alphabet => {
-      const index = alphabetList.findIndex(alpha => alpha.toLocaleLowerCase() == alphabet.toLocaleLowerCase())
+    let listArray = []
+    setSignList([])
+    const updatedString = e.target.value
+    updatedString.split('').map((alphabet) => {
+      const index = alphabetList.findIndex(
+        (alpha) => alpha.toLocaleLowerCase() == alphabet.toLocaleLowerCase()
+      )
       listArray.push(getList()[index])
     })
-    setSignList(listArray);
+    setSignList(listArray)
     setTranslation(e.target.value)
   }
 
@@ -60,22 +88,29 @@ const Translate = () => {
           <div className='txtIConDiv'>
             <h1>Lost in Translate</h1>
             <div className='navIcon'>
-            <img src={Side} width="130" height={60} onClick={() => Navigator('/profile')}/>
-            <p>{localStorage.getItem("user")}</p>
+              <img
+                src={Side}
+                width='130'
+                height={60}
+                onClick={() => Navigator('/profile')}
+              />
+              <p>{localStorage.getItem('user')}</p>
             </div>
           </div>
         </div>
         <div className='secMain'>
           <div className='right'>
-            <form onSubmit={e => {
-              getTranslation(),
-              e.preventDefault()
-            }} className='translateBox'>
+            <form
+              onSubmit={(e) => {
+                getTranslation(), e.preventDefault()
+              }}
+              className='translateBox'
+            >
               <div className='transHedMain'>
                 <div className='heading'>
                   <h1>Translate page</h1>
                 </div>
-                  
+
                 <div className='texInput'>
                   <input
                     value={translation}
@@ -87,18 +122,19 @@ const Translate = () => {
                 </div>
 
                 <div className='text' name=''>
-                  {
-                    signsList.length > 0 && signsList.map(path => {
+                  {signsList.length > 0 &&
+                    signsList.map((path, ind) => {
                       return (
-                        <img src={path} width={50} height={50}  />
+                        <React.Fragment key={ind}>
+                          {path == undefined ? null : (
+                            <img src={path} width={50} height={50} />
+                          )}
+                        </React.Fragment>
                       )
-                    })
-                  }
+                    })}
                 </div>
               </div>
-              <button  className='transBtn'>
-                Translate
-              </button>
+              <button className='transBtn'>Translate</button>
             </form>
           </div>
         </div>
